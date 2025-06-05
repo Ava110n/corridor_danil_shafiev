@@ -3,10 +3,16 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:local="clr-namespace:corridor_danil_shafiev"
+        xmlns:local="clr-namespace:corridor_danil_shafiev" xmlns:modelview="clr-namespace:corridor_danil_shafiev.ModelView" d:DataContext="{d:DesignInstance Type=modelview:MV}"
         mc:Ignorable="d"
         Title="MainWindow" Height="900" Width="900">
     <Canvas Name="canvas" Height="800" Width="800" Background="White" MouseLeftButtonDown="clickOnCanvas">
+
+        <ItemsControl>
+            <Ellipse x:Name="firstEllipse" Width="90" Height="90" Fill="{Binding OnPropertyChanged}" Margin="{Binding OnPropertyChanged}"/>
+            
+        </ItemsControl>
+        
         <Line X1="0" X2="0" Y1="0" Y2="800" Stroke="Black"/>
         <Line X1="100" X2="100" Y1="0" Y2="800" Stroke="Black"/>
         <Line X1="200" X2="200" Y1="0" Y2="800" Stroke="Black"/>

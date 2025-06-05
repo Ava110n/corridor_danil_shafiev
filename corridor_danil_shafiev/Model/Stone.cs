@@ -20,5 +20,10 @@ namespace corridor_danil_shafiev.Model
             this.y = y;
             this.color = color;
         }
+
+        internal static double dist_manhattan(Stone A, Stone B)
+        {
+            return Math.Abs(A.x - B.x) + Math.Abs(A.y - B.y);
+        }
     }
 }

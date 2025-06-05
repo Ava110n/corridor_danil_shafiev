@@ -18,9 +18,13 @@ using corridor_danil_shafiev.ModelView;
 /// </summary>
 public partial class MainWindow : Window
 {
+
+    MV mv;
+
     public MainWindow()
     {
         InitializeComponent();
+        mv = new MV();
     }
 
     private void clickOnCanvas(object sender, MouseButtonEventArgs e)
@@ -29,7 +33,7 @@ public partial class MainWindow : Window
         int x = (int)(pos.X / 8);
         int y = (int)(pos.Y / 8);
 
-        MV modelView = new MV();
-        modelView.myClick(x,y);
+
+        mv.myClick(x,y);
     }
 }
