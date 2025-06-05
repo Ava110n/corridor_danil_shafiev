@@ -19,12 +19,12 @@ using corridor_danil_shafiev.ModelView;
 public partial class MainWindow : Window
 {
 
-    MV mv;
+    MV mv = new MV();
 
     public MainWindow()
     {
         InitializeComponent();
-        mv = new MV();
+        DataContext = mv;
     }
 
     private void clickOnCanvas(object sender, MouseButtonEventArgs e)

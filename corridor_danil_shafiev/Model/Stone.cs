@@ -1,20 +1,27 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.Specialized;
+using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
 namespace corridor_danil_shafiev.Model
 {
-    class Stone
+    public class Stone: INotifyPropertyChanged
     {
         double x;
         double y;
         string color;
+        string margin = "0,0,0,0";
 
-        internal double X { get => x; set => value = x; }    
-        internal double Y { get => y; set => value = y; }    
-        internal Stone(double x = 0, double y = 0, string color = "black")
+        public event PropertyChangedEventHandler? PropertyChanged;
+
+        internal double X { get => x; set => x = value; }    
+        internal double Y { get => y; set => y = value; }    
+
+        public string Margin { get => margin; set => margin = value; }
+        public Stone(double x = 0, double y = 0, string color = "black")
         {
             this.x = x;
             this.y = y;

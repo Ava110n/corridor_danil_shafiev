@@ -8,9 +8,12 @@
         Title="MainWindow" Height="900" Width="900">
     <Canvas Name="canvas" Height="800" Width="800" Background="White" MouseLeftButtonDown="clickOnCanvas">
 
-        <ItemsControl>
-            <Ellipse x:Name="firstEllipse" Width="90" Height="90" Fill="{Binding OnPropertyChanged}" Margin="{Binding OnPropertyChanged}"/>
-            
+        <ItemsControl ItemsSource="{Binding Stones}">
+            <ItemsControl.ItemTemplate>
+                <DataTemplate>
+                    <Ellipse Fill="Red" Width="90" Height="90" Margin="{Binding Path=Margin}"/>
+                </DataTemplate>
+            </ItemsControl.ItemTemplate>
         </ItemsControl>
         
         <Line X1="0" X2="0" Y1="0" Y2="800" Stroke="Black"/>

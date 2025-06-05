@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Collections.Specialized;
 using System.ComponentModel;
 using System.Linq;
@@ -12,7 +13,7 @@ using static corridor_danil_shafiev.MainWindow;
 
 namespace corridor_danil_shafiev.ModelView
 {
-    internal class MV: INotifyCollectionChanged, INotifyPropertyChanged
+    public class MV: INotifyCollectionChanged, INotifyPropertyChanged
     {
 
         int turn = 1;
@@ -22,16 +23,15 @@ namespace corridor_danil_shafiev.ModelView
         Stone first = new Stone(0, 0, "blue");
         Stone second = new Stone(7, 7, "red");
 
-        List<Stone> stones = new List<Stone>();
+        ObservableCollection<Stone> stones = new ObservableCollection<Stone>();
 
         public event NotifyCollectionChangedEventHandler? CollectionChanged;
         public event PropertyChangedEventHandler? PropertyChanged;
 
-        List<Stone> Stones
+        public ObservableCollection<Stone> Stones
         {
             get
             {
-                OnPropertyChanged();
                 return stones;
             }
             set { 
@@ -40,18 +40,32 @@ namespace corridor_danil_shafiev.ModelView
             }
         }
 
-        
+
         public void OnPropertyChanged([CallerMemberName] string prop = "")
         {
-            if(PropertyChanged!= null) { PropertyChanged(this, new PropertyChangedEventArgs(prop)); }
-            //MainWindow
-
+            if (PropertyChanged != null)
+                PropertyChanged(this, new PropertyChangedEventArgs(prop));
         }
 
-        internal MV()
+
+        DBHelper db;
+        public MV()
         {
-            Stones.Add(first);
-            Stones.Add(second);
+            Stones = new ObservableCollection<Stone>();
+
+            /*Stones.Add(first);
+            Stones.Add(second);*/
+            /*Stones = new ObservableCollection<Stone>()
+            {
+                new Stone(){Margin = "50,50,0,0"},
+                new Stone(){Margin = "50,50,0,0"}
+            };*/
+            db = new DBHelper();
+            var myStones = db.LoadData();
+            foreach(var stone in myStones)
+            {
+                Stones.Add(stone);
+            }
         }
 
         internal void myClick(double x, double y)
